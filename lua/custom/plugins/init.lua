@@ -15,10 +15,20 @@ return {
     'Mofiqul/dracula.nvim',
   },
   {
+    'scottmckendry/cyberdream.nvim',
+  },
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   opts = {
+  --     theme = 'dragon',
+  --   },
+  -- },
+  {
     'zaldih/themery.nvim',
     opts = {
       themes = {
         'dracula',
+        'kanagawa-dragon',
       },
       livePreview = true,
     },
@@ -30,7 +40,7 @@ return {
         'nvim-tree/nvim-web-devicons',
       },
       options = {
-        theme = 'dracula',
+        theme = 'auto',
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         icons_enabled = true,
