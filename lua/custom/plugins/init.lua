@@ -7,4 +7,49 @@ return {
     'supermaven-inc/supermaven-nvim',
     opts = {},
   },
+  {
+    'mfussenegger/nvim-dap',
+    opts = {},
+  },
+  {
+    'Mofiqul/dracula.nvim',
+  },
+  {
+    'zaldih/themery.nvim',
+    opts = {
+      themes = {
+        'dracula',
+      },
+      livePreview = true,
+    },
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    opts = {
+      dependencies = {
+        'nvim-tree/nvim-web-devicons',
+      },
+      options = {
+        theme = 'dracula',
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        icons_enabled = true,
+        icon_separator_active = '',
+        icon_separator_inactive = '',
+      },
+    },
+  },
+  {
+
+    'akinsho/bufferline.nvim',
+    opts = {
+      options = {
+        dependencies = {
+          'nvim-tree/nvim-web-devicons',
+        },
+        tag = '*',
+        separator_style = 'slope',
+      },
+    },
+  },
 }
