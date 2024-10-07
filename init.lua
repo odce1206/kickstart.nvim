@@ -204,6 +204,21 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+if vim.fn.has 'wsl' == 1 then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+end
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -823,20 +838,35 @@ require('lazy').setup({
       }
     end,
   },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  -- COLORSCHEME CONFIG
+  {
+    -- 'catppuccin/nvim',
     'rebelot/kanagawa.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- opts = {
+    --   term_colors = true,
+    --   color_overrides = {
+    --     mocha = {
+    --       base = '#000000',
+    --       mantlle = '#000000',
+    --       crust = '#000000',
+    --     },
+    --   },
+    --   integrations = {
+    --     telescope = {
+    --       enabled = true,
+    --       style = 'nvchad',
+    --     },
+    --     dropbar = {
+    --       enabled = true,
+    --       color_mode = true,
+    --     },
+    --   },
+    -- },
     init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       -- vim.o.background = ''
       -- vim.opt.termguicolors true
+      -- vim.cmd.colorscheme 'catppuccin-mocha'
       vim.cmd.colorscheme 'kanagawa-dragon'
 
       -- You can configure highlights by doing something like:

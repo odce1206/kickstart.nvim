@@ -17,22 +17,6 @@ return {
   {
     'scottmckendry/cyberdream.nvim',
   },
-  -- {
-  --   'rebelot/kanagawa.nvim',
-  --   opts = {
-  --     theme = 'dragon',
-  --   },
-  -- },
-  {
-    'zaldih/themery.nvim',
-    opts = {
-      themes = {
-        'dracula',
-        'kanagawa-dragon',
-      },
-      livePreview = true,
-    },
-  },
   {
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -49,17 +33,27 @@ return {
       },
     },
   },
+  -- {
+  --   'akinsho/bufferline.nvim',
+  --   opts = {
+  --     options = {
+  --       themable = true,
+  --       dependencies = {
+  --         'nvim-tree/nvim-web-devicons',
+  --       },
+  --       tag = '*',
+  --       separator_style = 'slope',
+  --     },
+  --   },
+  -- },
   {
-
-    'akinsho/bufferline.nvim',
-    opts = {
-      options = {
-        dependencies = {
-          'nvim-tree/nvim-web-devicons',
-        },
-        tag = '*',
-        separator_style = 'slope',
-      },
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
   },
 }
