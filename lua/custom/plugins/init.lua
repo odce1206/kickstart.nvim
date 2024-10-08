@@ -50,7 +50,7 @@ return {
     'folke/drop.nvim',
     opts = {
       theme = 'matrix',
-      screensaver = 1000 * 60 * 0.25,
+      screensaver = 1000 * 60 * 5,
     },
   },
   {
