@@ -12,6 +12,10 @@ return {
     opts = {},
   },
   {
+    'kdheepak/lazygit.nvim',
+    opts = {},
+  },
+  {
     'Mofiqul/dracula.nvim',
   },
   {
