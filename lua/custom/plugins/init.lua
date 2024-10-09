@@ -13,6 +13,24 @@ return {
     },
   },
   {
+    'linux-cultist/venv-selector.nvim',
+    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    config = function()
+      require('venv-selector').setup {
+        -- Your options go here
+        -- name = "venv",
+        -- auto_refresh = false
+      }
+    end,
+    -- event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+    keys = {
+      -- Keymap to open VenvSelector to pick a venv.
+      { '<leader>vs', '<cmd>VenvSelect<cr>', desc = 'Select Environment' },
+      -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+      { '<leader>vc', '<cmd>VenvSelectCached<cr>', desc = 'Select Cached' },
+    },
+  },
+  {
     'jinh0/eyeliner.nvim',
     config = function()
       require('eyeliner').setup {
@@ -92,7 +110,16 @@ return {
     -- opts = {
     -- },
   },
-
+  {
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
   -- natecraddock/workspaces.nvim
   {
     'ahmedkhalf/project.nvim',
@@ -105,19 +132,15 @@ return {
     'nvim-lualine/lualine.nvim',
     opts = {
       dependencies = {
-        -- 'echavnovsky/mini.icons',
-        -- MiniIcons,
         'nvim-tree/nvim-web-devicons',
       },
       options = {
         theme = 'auto',
-        section_separators = { left = '', right = '' },
-        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
         icons_enabled = true,
-        icon_separator_active = '',
-        icon_separator_inactive = '', -- what other options can be set here?
+        component_separators = { left = '', right = '' },
       },
-      -- winbar = {},
       sections = {
         lualine_c = {
           {
@@ -126,9 +149,16 @@ return {
             use_mode_colors = true,
           },
         },
-        -- lualine_c = { { 'filename', path = 1 } },
-        --
       },
+      inactive_sections = {
+        lualine_a = { 'filename' },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'location' },
+      },
+      -- tabline = {},
       extensions = {
         'fzf',
       },

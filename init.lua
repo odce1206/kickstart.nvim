@@ -869,37 +869,27 @@ require('lazy').setup({
   },
   -- COLORSCHEME CONFIG
   {
-    -- 'catppuccin/nvim',
-    'rebelot/kanagawa.nvim',
+    'scottmckendry/cyberdream.nvim',
+    -- 'rebelot/kanagawa.nvim',
+    lazy = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    -- opts = {
-    --   term_colors = true,
-    --   color_overrides = {
-    --     mocha = {
-    --       base = '#000000',
-    --       mantlle = '#000000',
-    --       crust = '#000000',
-    --     },
-    --   },
-    --   integrations = {
-    --     telescope = {
-    --       enabled = true,
-    --       style = 'nvchad',
-    --     },
-    --     dropbar = {
-    --       enabled = true,
-    --       color_mode = true,
-    --     },
-    --   },
-    -- },
     init = function()
       -- vim.o.background = ''
       -- vim.opt.termguicolors true
-      -- vim.cmd.colorscheme 'catppuccin-mocha'
-      vim.cmd.colorscheme 'kanagawa-dragon'
-
+      vim.cmd.colorscheme 'cyberdream'
+      -- vim.cmd.colorscheme 'kanagawa-dragon'
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
+    end,
+    config = function()
+      require('cyberdream').setup {
+        italic_comments = true,
+        extensions = {
+          fzflua = true,
+          whichkey = true,
+          telescope = true,
+        },
+      }
     end,
   },
   -- Highlight todo, notes, etc in comments
