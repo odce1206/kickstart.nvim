@@ -13,6 +13,12 @@ return {
     },
   },
   {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
+  },
+  {
     'linux-cultist/venv-selector.nvim',
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
     config = function()
@@ -28,6 +34,13 @@ return {
       { '<leader>vs', '<cmd>VenvSelect<cr>', desc = 'Select Environment' },
       -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
       { '<leader>vc', '<cmd>VenvSelectCached<cr>', desc = 'Select Cached' },
+    },
+  },
+  {
+    'tamton-aquib/zone.nvim',
+    opts = {
+      style = 'treadmill',
+      after = 300,
     },
   },
   {
@@ -64,13 +77,13 @@ return {
     'mfussenegger/nvim-dap',
     opts = {},
   },
-  {
-    'folke/drop.nvim',
-    opts = {
-      theme = 'matrix',
-      screensaver = 1000 * 60 * 5,
-    },
-  },
+  -- {
+  --   'folke/drop.nvim',
+  --   opts = {
+  --     theme = 'matrix',
+  --     screensaver = 1000 * 60 * 5,
+  --   },
+  -- },
   {
     'kdheepak/lazygit.nvim',
     lazy = true,
@@ -97,6 +110,18 @@ return {
   },
   {
     'scottmckendry/cyberdream.nvim',
+  },
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    version = '*',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'echavnovsky/mini.icons', -- optional dependency
+    },
+    opts = {
+      -- configurations go here
+    },
   },
   {
     'natecraddock/workspaces.nvim',
@@ -132,11 +157,11 @@ return {
     'nvim-lualine/lualine.nvim',
     opts = {
       dependencies = {
-        'nvim-tree/nvim-web-devicons',
+        'echavnovsky/mini.icons',
       },
       options = {
         theme = 'auto',
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
         icons_enabled = true,
         component_separators = { left = '', right = '' },
@@ -167,8 +192,8 @@ return {
   {
     'ibhagwan/fzf-lua',
     dependencies = {
-      -- 'echavnovsky/mini.icons',
-      'nvim-tree/nvim-web-devicons',
+      'echavnovsky/mini.icons',
+      -- 'nvim-tree/nvim-web-devicons',
     },
     opts = {},
   },
