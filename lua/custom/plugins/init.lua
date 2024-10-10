@@ -13,6 +13,9 @@ return {
     },
   },
   {
+    'ThePrimeagen/vim-be-good',
+  },
+  {
     'ghassan0/telescope-glyph.nvim',
     keys = {
       { '<leader>si', '<cmd>Telescope glyph<cr>', desc = 'Search Glyphs' },
