@@ -409,15 +409,8 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        pickers = {
-          find_files = {
-            theme = 'ivy',
-          },
-        },
+        pickers = {},
         extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_ivy(),
-          },
           -- ['find_files'] = {
           --   require('telescope.themes').get_ivy(),
           -- },
@@ -432,25 +425,28 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'workspaces')
+      pcall(require('telescope').load_extension, 'glyph')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       local extensionsLoc = require 'telescope'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', require('fzf-lua').keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search Help' })
+      vim.keymap.set('n', '<leader>sk', require('fzf-lua').keymaps, { desc = 'Search Keymaps' })
+      vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = 'Search Files' })
       -- vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      -- vim.keymap.set('n', '<leader>sp', require('telescope').load_extension.('projects'), { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>ss', require('fzf-lua').builtin, { desc = 'Search Built in' })
+      vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_cWORD, { desc = 'Search current Word' })
+      -- vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>sg', require('fzf-lua').live_grep, { desc = 'Search by Grep' })
+      -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sd', require('fzf-lua').diagnostics_document, { desc = 'Search Diagnostics' })
+      vim.keymap.set('n', '<leader>sr', require('fzf-lua').resume, { desc = 'Search Resume' })
+      vim.keymap.set('n', '<leader>s.', require('fzf-lua').oldfiles, { desc = 'Search Recent Files ("." for repeat)' })
+      -- vim.keymap.set('n', '<leader>si', require('telescope').load_extension.('glyph'), { desc = 'Search Glyphs' })
       vim.keymap.set('n', '<leader>sp', function()
         require('telescope').extensions.workspaces.workspaces {}
         -- require('telescope').extensions.projects.projects {}
-      end, { desc = '[S]earch [P]rojects)' })
+      end, { desc = 'Search Workspaces' })
       -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader><leader>', require('fzf-lua').buffers, { desc = '[ ] Find existing buffers' })
 

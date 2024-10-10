@@ -13,6 +13,12 @@ return {
     },
   },
   {
+    'ghassan0/telescope-glyph.nvim',
+    keys = {
+      { '<leader>si', '<cmd>Telescope glyph<cr>', desc = 'Search Glyphs' },
+    },
+  },
+  {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()
@@ -34,13 +40,6 @@ return {
       { '<leader>vs', '<cmd>VenvSelect<cr>', desc = 'Select Environment' },
       -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
       { '<leader>vc', '<cmd>VenvSelectCached<cr>', desc = 'Select Cached' },
-    },
-  },
-  {
-    'tamton-aquib/zone.nvim',
-    opts = {
-      style = 'treadmill',
-      after = 300,
     },
   },
   {
@@ -77,13 +76,6 @@ return {
     'mfussenegger/nvim-dap',
     opts = {},
   },
-  -- {
-  --   'folke/drop.nvim',
-  --   opts = {
-  --     theme = 'matrix',
-  --     screensaver = 1000 * 60 * 5,
-  --   },
-  -- },
   {
     'kdheepak/lazygit.nvim',
     lazy = true,
@@ -126,6 +118,7 @@ return {
   {
     'natecraddock/workspaces.nvim',
     config = function()
+      vim.keymap.set('n', '<C-g>', require('fzf-lua').grep, { desc = 'Grep' })
       require('workspaces').setup {
         hooks = {
           open = 'FzfLua files',
@@ -195,6 +188,97 @@ return {
       'echavnovsky/mini.icons',
       -- 'nvim-tree/nvim-web-devicons',
     },
+    config = function()
+      require('fzf-lua').setup { 'telescope' }
+    end,
     opts = {},
+  },
+  { 'nvim-focus/focus.nvim', version = '*', keys = {
+    { '<leader>tf', '<cmd>FocusEnable<cr>', desc = '[F]ocus [E]nable' },
+  }, enabled = false },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      menu = {
+        width = vim.api.nvim_win_get_width(0) - 4,
+      },
+      settings = {
+        save_on_toggle = true,
+      },
+    },
+    -- config = function()
+    --   require('harpoon').setup {}
+    --   local function toggle_telescope_with_harpoon(harpoon_files)
+    --     local file_paths = {}
+    --     for _, item in ipairs(harpoon_files.items) do
+    --       table.insert(file_paths, item.value)
+    --     end
+    --
+    --     require('telescope.pickers')
+    --       .new({}, {
+    --         prompt_title = 'Harpoon',
+    --         finder = require('telescope.finders').new_table {
+    --           results = file_paths,
+    --         },
+    --         previewer = require('telescope.config').values.file_previewer {},
+    --         sorter = require('telescope.config').values.generic_sorter {},
+    --       })
+    --       :find()
+    --   end
+    --   vim.keymap.set('n', '<leader>a', function()
+    --     local harpoon = require 'harpoon'
+    --     toggle_telescope_with_harpoon(harpoon:list())
+    --   end, { desc = 'Open harpoon window' })
+    -- end,
+    keys = function()
+      local keys = {
+        {
+          '<leader>H',
+          function()
+            require('harpoon'):list():add()
+          end,
+          desc = 'Harpoon File',
+        },
+        {
+          '<leader>hq',
+          function()
+            local function toggle_telescope_with_harpoon(harpoon_files)
+              local file_paths = {}
+              for _, item in ipairs(harpoon_files.items) do
+                table.insert(file_paths, item.value)
+              end
+
+              require('telescope.pickers')
+                .new({}, {
+                  prompt_title = 'Harpoon',
+                  finder = require('telescope.finders').new_table {
+                    results = file_paths,
+                  },
+                  previewer = require('telescope.config').values.file_previewer {},
+                  sorter = require('telescope.config').values.generic_sorter {},
+                })
+                :find()
+            end
+            local harpoon = require 'harpoon'
+            toggle_telescope_with_harpoon(harpoon:list())
+            -- harpoon.ui:toggle_quick_menu(harpoon:list())
+          end,
+          desc = 'Harpoon Quick Menu',
+        },
+      }
+
+      for i = 1, 5 do
+        table.insert(keys, {
+          '<leader>' .. i,
+          function()
+            require('harpoon'):list():select(i)
+          end,
+          desc = 'Harpoon to File ' .. i,
+        })
+      end
+      return keys
+    end,
   },
 }
