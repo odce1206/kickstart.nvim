@@ -741,6 +741,7 @@ require('lazy').setup({
         python = { 'black' },
         markdown = { 'prettier' },
         vue = { 'prettier' },
+        json = { 'prettier' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },

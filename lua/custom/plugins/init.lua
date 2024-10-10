@@ -80,6 +80,9 @@ return {
     opts = {},
   },
   {
+    'jay-babu/mason-nvim-dap.nvim',
+  },
+  {
     'kdheepak/lazygit.nvim',
     lazy = true,
     cmd = {

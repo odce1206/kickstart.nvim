@@ -46,7 +46,7 @@ return {
       unpack(keys),
     }
   end,
-  config = function()
+  config = function(_, opts)
     local dap = require 'dap'
     local dapui = require 'dapui'
 
@@ -57,15 +57,35 @@ return {
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
-      handlers = {},
+      handlers = {
+        python = function(source_name)
+          dap.adapters.python = {
+            type = 'executable',
+            command = '/usr/bin/python3',
+            args = {
+              '-m',
+              'debugpy.adapter',
+            },
+          }
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
-      ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+          -- dap.configurations.python = {
+          --   {
+          --     type = 'python',
+          --     request = 'launch',
+          --     name = 'Launch file',
+          --     program = '${file}', -- This configuration will launch the current file if used.
+          --   },
+          --   {
+          --     type = 'python',
+          --     request = 'launch',
+          --     name = 'Launch Fastapi',
+          --     program = 'fastapi run dev', -- This configuration will launch the current file if used.
+          --   },
+          -- }
+        end,
       },
     }
+    require('dap-python').setup '/usr/bin/python'
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
