@@ -157,6 +157,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -424,7 +426,6 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'workspaces')
       pcall(require('telescope').load_extension, 'glyph')
 
       -- See `:help telescope.builtin`
@@ -443,10 +444,10 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', require('fzf-lua').resume, { desc = 'Search Resume' })
       vim.keymap.set('n', '<leader>s.', require('fzf-lua').oldfiles, { desc = 'Search Recent Files ("." for repeat)' })
       -- vim.keymap.set('n', '<leader>si', require('telescope').load_extension.('glyph'), { desc = 'Search Glyphs' })
-      vim.keymap.set('n', '<leader>sp', function()
-        require('telescope').extensions.workspaces.workspaces {}
-        -- require('telescope').extensions.projects.projects {}
-      end, { desc = 'Search Workspaces' })
+      -- vim.keymap.set('n', '<leader>sp', function()
+      --   require('telescope').extensions.workspaces.workspaces {}
+      --   -- require('telescope').extensions.projects.projects {}
+      -- end, { desc = 'Search Workspaces' })
       -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader><leader>', require('fzf-lua').buffers, { desc = '[ ] Find existing buffers' })
 
@@ -495,6 +496,7 @@ require('lazy').setup({
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      'ray-x/lsp_signature.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -557,7 +559,7 @@ require('lazy').setup({
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
           -- Jump to the implementation of the word under your cursor.
-          --  Useful when your language has ways of declaring types without an actual implementation.
+          --/  Useful when your language has ways of declaring types without an actual implementation.
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
@@ -645,7 +647,14 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        pyright = {},
+        basedpyright = {
+          capabilities = capabilities,
+          settings = {
+            basedpyright = {
+              typeCheckingMode = 'standard',
+            },
+          },
+        },
         volar = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -678,6 +687,17 @@ require('lazy').setup({
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
+      require('lsp_signature').setup {
+        bind = true,
+        handler_opts = {
+          border = 'shadow',
+        },
+        hint_prefix = {
+          above = '↙ ', -- when the hint is on the line above the current line
+          current = '← ', -- when the hint is on the same line
+          below = '↖ ', -- when the hint is on the line below the current line
+        },
+      }
       require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
@@ -771,17 +791,13 @@ require('lazy').setup({
           --    https://github.com/rafamadriz/friendly-snippets
           {
             'rafamadriz/friendly-snippets',
-            config = function()
-              require('luasnip.loaders.from_vscode').lazy_load()
-            end,
           },
         },
+        config = function()
+          require('luasnip.loaders.from_vscode').lazy_load()
+        end,
       },
       'saadparwaiz1/cmp_luasnip',
-
-      -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
     },
@@ -860,6 +876,9 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+        },
+        experimental = {
+          ghost_text = true,
         },
       }
     end,

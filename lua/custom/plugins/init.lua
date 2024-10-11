@@ -46,6 +46,18 @@ return {
     },
   },
   {
+    'rmagatti/auto-session',
+    lazy = false,
+
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { '~/', '~/repos', '~/Projects', '~/Downloads', '/' },
+      -- log_level = 'debug',
+    },
+  },
+  {
     'jinh0/eyeliner.nvim',
     config = function()
       require('eyeliner').setup {
@@ -115,7 +127,7 @@ return {
     version = '*',
     dependencies = {
       'SmiteshP/nvim-navic',
-      'echavnovsky/mini.icons', -- optional dependency
+      'echasnovski/mini.icons', -- optional dependency
     },
     opts = {
       -- configurations go here
@@ -131,8 +143,7 @@ return {
         },
       }
     end,
-    -- opts = {
-    -- },
+    enabled = false,
   },
   {
     'kylechui/nvim-surround',
@@ -156,7 +167,7 @@ return {
     'nvim-lualine/lualine.nvim',
     opts = {
       dependencies = {
-        'echavnovsky/mini.icons',
+        'echasnovski/mini.icons',
       },
       options = {
         theme = 'auto',
@@ -191,7 +202,7 @@ return {
   {
     'ibhagwan/fzf-lua',
     dependencies = {
-      'echavnovsky/mini.icons',
+      'echasnovski/mini.icons',
       -- 'nvim-tree/nvim-web-devicons',
     },
     config = function()
