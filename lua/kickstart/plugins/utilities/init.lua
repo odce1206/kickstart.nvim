@@ -7,6 +7,9 @@ return {
   require 'kickstart.plugins.utilities.surround',
   require 'kickstart.plugins.utilities.autosession',
   require 'kickstart.plugins.utilities.lazygit',
-  require 'kickstart.plugins.utilities.barbecue',
+  require 'kickstart.plugins.utilities.dropbar',
   require 'kickstart.plugins.utilities.neo-tree',
+  require 'kickstart.plugins.utilities.mini',
+  require 'kickstart.plugins.utilities.oil',
+  -- require 'kickstart.plugins.utilities.barbecue',
 }

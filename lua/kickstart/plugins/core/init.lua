@@ -10,4 +10,5 @@ return {
   require 'kickstart.plugins.core.which',
   require 'kickstart.plugins.core.highlights',
   require 'kickstart.plugins.core.autoformat',
+  require 'kickstart.plugins.core.treesitter',
 }
