@@ -49,6 +49,7 @@ return {
   config = function(_, opts)
     local dap = require 'dap'
     local dapui = require 'dapui'
+    local dbgpy = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -85,7 +86,7 @@ return {
         end,
       },
     }
-    require('dap-python').setup '/usr/bin/python'
+    require('dap-python').setup(dbgpy)
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
