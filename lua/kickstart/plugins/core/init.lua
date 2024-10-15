@@ -1,5 +1,6 @@
 return {
   require 'kickstart.plugins.core.lsp',
+  require 'kickstart.plugins.core.vimsleuth',
   require 'kickstart.plugins.core.indent_line',
   require 'kickstart.plugins.core.lint',
   require 'kickstart.plugins.core.gitsigns',
