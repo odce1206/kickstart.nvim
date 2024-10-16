@@ -16,6 +16,12 @@ return {
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
+    require('mini.indentscope').setup {
+      -- draw = {
+      --   animation = require('mini.indentscope').gen_animation.quadratic { easing = 'out', duration = 1500, unit = 'total' },
+      -- },
+      symbol = '│',
+    }
     -- require('mini.icons').setup()
     -- MiniIcons.mock_nvim_web_devicons()
     -- Simple and easy statusline.

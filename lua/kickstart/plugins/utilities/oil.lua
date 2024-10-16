@@ -2,7 +2,13 @@ return {
   'stevearc/oil.nvim',
   ---@module 'oil'
   ---@type oil.SetupOpts
-  opts = {},
+  opts = {
+    skip_confirm_for_simple_edits = true,
+    win_options = {
+      wrap = true,
+    },
+    delete_to_trash = false,
+  },
   -- Optional dependencies
   dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   keys = {

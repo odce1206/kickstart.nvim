@@ -183,6 +183,7 @@ return {
             },
           },
         },
+        -- jedi_language_server = {},
         volar = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
