@@ -1,17 +1,20 @@
 return {
   'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
   opts = {
-    dependencies = {
-      -- 'echasnovski/mini.icons',
-      'nvim-tree/nvim-web-devicons',
-    },
     options = {
-      theme = 'auto',
-      section_separators = { left = '', right = '' },
-      -- section_separators = { left = '', right = '' },
+      theme = 'enfocado',
+      section_separators = { left = '', right = '' },
+      -- section_separators = { left = '', right = '' },
+      -- -- section_separators = { left = '', right = '' },
       icons_enabled = true,
       component_separators = { left = '', right = '' },
     },
+    --    modea = function()
+    --            local currMode = vim.fn.mode(),
+    --   end,
     sections = {
       lualine_a = {
         {
@@ -26,6 +29,24 @@ return {
           -- icon position can also be set to the right side from table. Example:
           -- {'branch', icon = {'¯éá', align='right', color={fg='green'}}}
           icon = '',
+          color = function(section)
+            local currMode = vim.fn.mode()
+            --require 'notify'(currMode)
+            if currMode == 'n' then
+              return { bg = '#3fc5b7', fg = '#282828' }
+            elseif currMode == 'i' then
+              return { bg = '#83c746', fg = '#282828' }
+            elseif currMode == 'v' then
+              return { bg = '#eb6eb7', fg = '#282828' }
+            elseif currMode == 'V' then
+              return { bg = '#eb6eb7', fg = '#282828' }
+            elseif currMode == 'c' then
+              return { bg = '#e67f43', fg = '#282828' }
+            elseif currMode == 'r' then
+              return { bg = '#ed4a46', fg = '#282828' }
+            end
+            -- return { fg = vim.bo.modified and '#aa3355' or '#33aa88' }
+          end,
         },
       },
       lualine_c = {

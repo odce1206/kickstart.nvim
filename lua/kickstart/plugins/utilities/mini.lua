@@ -16,12 +16,22 @@ return {
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
+    require('mini.files').setup {
+      -- General options
+      options = {
+        -- Whether to delete permanently or move into module-specific trash
+        permanent_delete = false,
+      },
+    }
     require('mini.indentscope').setup {
       -- draw = {
       --   animation = require('mini.indentscope').gen_animation.quadratic { easing = 'out', duration = 1500, unit = 'total' },
       -- },
-      symbol = '│',
+      symbol = '▎',
     }
+
+    -- Keymaps
+    vim.keymap.set('n', '<leader>m', require('mini.files').open, { desc = 'Open minifiles' })
     -- require('mini.icons').setup()
     -- MiniIcons.mock_nvim_web_devicons()
     -- Simple and easy statusline.
