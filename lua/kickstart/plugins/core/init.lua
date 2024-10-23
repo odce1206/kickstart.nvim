@@ -10,6 +10,7 @@ return {
   require 'kickstart.plugins.core.highlights',
   require 'kickstart.plugins.core.autoformat',
   require 'kickstart.plugins.core.treesitter',
+  require 'kickstart.plugins.core.trouble',
   -- require 'kickstart.plugins.core.mini-indentscope',
   -- require 'kickstart.plugins.core.indent_line',
 }

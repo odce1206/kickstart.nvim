@@ -11,6 +11,7 @@ return {
   require 'kickstart.plugins.utilities.mini',
   require 'kickstart.plugins.utilities.mini-icons',
   require 'kickstart.plugins.utilities.oil',
+  require 'kickstart.plugins.utilities.noneckpain',
   -- require 'kickstart.plugins.utilities.surround',
   -- require 'kickstart.plugins.utilities.barbecue',
 }
