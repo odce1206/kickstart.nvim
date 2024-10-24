@@ -5,7 +5,7 @@ return {
   },
   opts = {
     options = {
-      theme = 'enfocado',
+      theme = 'auto',
       section_separators = { left = '', right = '' },
       -- section_separators = { left = '', right = '' },
       -- -- section_separators = { left = '', right = '' },
@@ -29,24 +29,24 @@ return {
           -- icon position can also be set to the right side from table. Example:
           -- {'branch', icon = {'¯éá', align='right', color={fg='green'}}}
           icon = '',
-          color = function(section)
-            local currMode = vim.fn.mode()
-            --require 'notify'(currMode)
-            if currMode == 'n' then
-              return { bg = '#3fc5b7', fg = '#282828' }
-            elseif currMode == 'i' then
-              return { bg = '#83c746', fg = '#282828' }
-            elseif currMode == 'v' then
-              return { bg = '#eb6eb7', fg = '#282828' }
-            elseif currMode == 'V' then
-              return { bg = '#eb6eb7', fg = '#282828' }
-            elseif currMode == 'c' then
-              return { bg = '#e67f43', fg = '#282828' }
-            elseif currMode == 'r' then
-              return { bg = '#ed4a46', fg = '#282828' }
-            end
-            -- return { fg = vim.bo.modified and '#aa3355' or '#33aa88' }
-          end,
+          -- color = function(section)
+          --   local currMode = vim.fn.mode()
+          --   --require 'notify'(currMode)
+          --   if currMode == 'n' then
+          --     return { bg = '#3fc5b7', fg = '#282828' }
+          --   elseif currMode == 'i' then
+          --     return { bg = '#83c746', fg = '#282828' }
+          --   elseif currMode == 'v' then
+          --     return { bg = '#eb6eb7', fg = '#282828' }
+          --   elseif currMode == 'V' then
+          --     return { bg = '#eb6eb7', fg = '#282828' }
+          --   elseif currMode == 'c' then
+          --     return { bg = '#e67f43', fg = '#282828' }
+          --   elseif currMode == 'r' then
+          --     return { bg = '#ed4a46', fg = '#282828' }
+          --   end
+          --   -- return { fg = vim.bo.modified and '#aa3355' or '#33aa88' }
+          -- end,
         },
       },
       lualine_c = {
