@@ -131,6 +131,7 @@ return {
           group_index = 0,
         },
         { name = 'nvim_lsp' },
+        { name = 'mkdnflow' },
         -- { name = 'nvim_lsp:basedpyright' },
         { name = 'luasnip' },
         { name = 'path' },

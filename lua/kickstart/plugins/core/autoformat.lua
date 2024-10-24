@@ -35,7 +35,7 @@ return {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'black' },
-        markdown = { 'prettier' },
+        markdown = { 'prettier', 'prettierd' },
         vue = { 'prettier' },
         json = { 'prettier' },
         --
