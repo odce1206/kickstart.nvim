@@ -150,13 +150,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  callback = function()
-    if vim.fn.argv(0) == '' then
-      require('fzf-lua').files()
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd('VimEnter', {
+--   callback = function()
+--     if vim.fn.argv(0) == '' then
+--       require('fzf-lua').files()
+--     end
+--   end,
+-- })
 if vim.fn.has 'wsl' == 1 then
   vim.g.clipboard = {
     name = 'WslClipboard',

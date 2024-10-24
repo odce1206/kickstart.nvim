@@ -7,14 +7,9 @@ return {
     options = {
       theme = 'auto',
       section_separators = { left = '', right = '' },
-      -- section_separators = { left = '', right = '' },
-      -- -- section_separators = { left = '', right = '' },
       icons_enabled = true,
       component_separators = { left = '', right = '' },
     },
-    --    modea = function()
-    --            local currMode = vim.fn.mode(),
-    --   end,
     sections = {
       lualine_a = {
         {
