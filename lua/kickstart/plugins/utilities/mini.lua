@@ -21,6 +21,7 @@ return {
       options = {
         -- Whether to delete permanently or move into module-specific trash
         permanent_delete = false,
+        use_as_default_explorer = false,
       },
     }
     require('mini.indentscope').setup {
