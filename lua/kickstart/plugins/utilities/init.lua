@@ -16,6 +16,7 @@ return {
   require 'kickstart.plugins.utilities.mkdnflow',
   require 'kickstart.plugins.utilities.copilot',
   require 'kickstart.plugins.utilities.copilot_chat',
+  require 'kickstart.plugins.utilities.key_analyzer',
   -- require 'kickstart.plugins.utilities.neorg',
   -- require 'kickstart.plugins.utilities.surround',
   -- require 'kickstart.plugins.utilities.barbecue',
